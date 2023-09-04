@@ -12,6 +12,21 @@ pub fn main() void {
     reverse_an_array(arr[0..arr.len]);
     std.debug.print("\n\nAfter -> \n", .{});
     print_slice(arr[0..arr.len]);
+
+    var arr_2 = [_]usize{1,2,3,4,5,6,7,8,9};
+    std.debug.print("\nbefore -> \n", .{});
+    print_slice(arr_2[0..arr_2.len]);
+    reverse_recursive(arr_2[0..arr_2.len], 0);
+    std.debug.print("\n\nAfter -> \n", .{});
+    print_slice(arr_2[0..arr_2.len]);
+
+    var arr_3 = [_]usize{1,2,3,4,5,6,7,8};
+    std.debug.print("\nbefore -> \n", .{});
+    print_slice(arr_3[0..arr_3.len]);
+    reverse_recursive(arr_3[0..arr_3.len], 0);
+    std.debug.print("\n\nAfter -> \n", .{});
+    print_slice(arr_3[0..arr_3.len]);
+
 }
 
 fn reverse_an_array(arr: [] usize)void { 
@@ -21,6 +36,14 @@ fn reverse_an_array(arr: [] usize)void {
         arr[left] = arr[arr.len-1-left];
         arr[arr.len-1-left] = temp;     
     }
+}
+
+fn reverse_recursive(arr:[]usize, i:usize) void {
+    if(i >= arr.len-1-i)return;
+    const temp:usize = arr[i];
+    arr[i] = arr[arr.len-1-i];
+    arr[arr.len-1-i] = temp;
+    reverse_recursive(arr, i+1);
 }
 
 fn print_slice(arr: []const usize)void {
