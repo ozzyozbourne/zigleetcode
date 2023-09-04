@@ -36,6 +36,7 @@ pub fn main() void {
     std.debug.print("\nIs \"AA\" a palindrome ? -> {}\n", .{res_2});
 
     p("\nFib 3, 4, 5 values are -> {} {} {}\n", .{fib(3), fib(4), fib(5)});
+    p("\nFib 2 value are -> {}\n", .{fib(2)});
 }
 
 fn fib(n:usize)usize{
