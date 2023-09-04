@@ -6,22 +6,21 @@ pub fn main() void {
     print_linearly_from_N_1(10);
     std.debug.print("{d}\n", .{fact_tail_op(4)});
     std.debug.print("{d}\n", .{fact_non_tail_op(4)});
-    
     var arr = [_]usize{1,2,3,4,5,6,7,8,9};
+    std.debug.print("before -> \n", .{});
+    print_slice(arr[0..arr.len]);
     reverse_an_array(arr[0..arr.len]);
+    std.debug.print("\n\nAfter -> \n", .{});
+    print_slice(arr[0..arr.len]);
 }
 
 fn reverse_an_array(arr: [] usize)void { 
-    std.debug.print("before -> \n", .{});
-    print_slice(arr[0..arr.len]);
     var left:usize  = 0;
     while (left < arr.len-1-left): (left += 1) {
         const temp:usize  = arr[left];
         arr[left] = arr[arr.len-1-left];
         arr[arr.len-1-left] = temp;     
     }
-    std.debug.print("\n\nAfter -> \n", .{});
-    print_slice(arr[0..arr.len]);
 }
 
 fn print_slice(arr: []const usize)void {
