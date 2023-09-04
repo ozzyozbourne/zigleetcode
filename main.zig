@@ -1,4 +1,5 @@
 const std = @import("std");
+const p = std.debug.print;
 
 pub fn main() void {
     print_name("ozzy", 10);
@@ -33,6 +34,13 @@ pub fn main() void {
     std.debug.print("\nIs \"osaid\" a palindrome ? -> {}\n", .{res});
     std.debug.print("\nIs \"OohoO\" a palindrome ? -> {}\n", .{res_1});
     std.debug.print("\nIs \"AA\" a palindrome ? -> {}\n", .{res_2});
+
+    p("\nFib 3, 4, 5 values are -> {} {} {}\n", .{fib(3), fib(4), fib(5)});
+}
+
+fn fib(n:usize)usize{
+    if(n==1 or n==0 ) return n;
+    return fib(n-1)+fib(n-2);
 }
 
 fn is_palindrome(s:[]const u8, i:usize ) bool {
