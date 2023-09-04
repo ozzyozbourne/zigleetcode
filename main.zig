@@ -27,6 +27,18 @@ pub fn main() void {
     std.debug.print("\n\nAfter -> \n", .{});
     print_slice(arr_3[0..arr_3.len]);
 
+    const res:bool = is_palindrome("osaid", 0);
+    const res_1:bool = is_palindrome("OohoO", 0);
+    const res_2:bool = is_palindrome("AA", 0);
+    std.debug.print("\nIs \"osaid\" a palindrome ? -> {}\n", .{res});
+    std.debug.print("\nIs \"OohoO\" a palindrome ? -> {}\n", .{res_1});
+    std.debug.print("\nIs \"AA\" a palindrome ? -> {}\n", .{res_2});
+}
+
+fn is_palindrome(s:[]const u8, i:usize ) bool {
+    if(i == s.len/2) return true;
+    if(s[i] != s[s.len-1-i]) return false;
+    return is_palindrome(s, i+1); 
 }
 
 fn reverse_an_array(arr: [] usize)void { 
