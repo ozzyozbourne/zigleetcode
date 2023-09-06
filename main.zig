@@ -37,6 +37,18 @@ pub fn main() void {
 
     p("\nFib 3, 4, 5 values are -> {} {} {}\n", .{fib(3), fib(4), fib(5)});
     p("\nFib 2 value are -> {}\n", .{fib(2)});
+    p("\nIs \"abc\" a subsequence of \"ahbgdc\" -> {}\n", .{is_sequence("abc", "ahbgdc")});
+    p("\nIs \"axe\" a subsequence of \"ahbgdc\" -> {}\n", .{is_sequence("axe", "ahbgdc")});
+}
+
+fn is_sequence(a1: []const u8, a2: []const u8)bool {
+    var l:usize = 0;
+    var r:usize = 0;
+    while(l < a1.len and r < a2.len){
+        if (a1[l] == a2[r]) l+=1;
+        r+=1;
+    }
+    return l == a1.len;
 }
 
 fn fib(n:usize)usize{
