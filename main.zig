@@ -44,9 +44,8 @@ pub fn main() void {
 fn is_sequence(a1: []const u8, a2: []const u8)bool {
     var l:usize = 0;
     var r:usize = 0;
-    while(l < a1.len and r < a2.len){
+    while(l < a1.len and r < a2.len):(r+=1){
         if (a1[l] == a2[r]) l+=1;
-        r+=1;
     }
     return l == a1.len;
 }
