@@ -1,7 +1,7 @@
 const std = @import("std");
 const p = std.debug.print;
 
-pub fn main() void {
+pub fn main() !void {
     print_name("ozzy", 10);
     print_linearly_from_1_n(10);
     print_linearly_from_N_1(10);
@@ -39,6 +39,29 @@ pub fn main() void {
     p("\nFib 2 value are -> {}\n", .{fib(2)});
     p("\nIs \"abc\" a subsequence of \"ahbgdc\" -> {}\n", .{is_sequence("abc", "ahbgdc")});
     p("\nIs \"axe\" a subsequence of \"ahbgdc\" -> {}\n", .{is_sequence("axe", "ahbgdc")});
+    var in = [_]isize{2,7,11,15};
+    var result_1 = try two_sum(in[0..in.len], 9); 
+    print_slice_isize(result_1[0..result_1.len]); 
+}
+
+fn two_sum(nums: [] isize, target: isize ) ![2]isize {
+    var map = std.AutoHashMap(isize, isize).init(std.heap.page_allocator);
+    defer map.deinit();
+
+    var res: [2]isize = undefined; 
+    for (nums, 0..) |value, index| {
+       var val = try map.getOrPut(target - value);
+       if (!val.found_existing ){
+            val.value_ptr.* = @intCast(index);
+       }else {
+            res[0] = @intCast(index);
+          var vt = map.get(target - value);
+          if(vt) |v| {
+            res[1] = v;
+          }
+       }
+    }
+    return res;
 }
 
 fn is_sequence(a1: []const u8, a2: []const u8)bool {
@@ -79,6 +102,13 @@ fn reverse_recursive(arr:[]usize, i:usize) void {
 }
 
 fn print_slice(arr: []const usize)void {
+    for (arr, 0..) |value, index| {
+        std.debug.print("value -> {d}\tindex -> {d}\n", .{value, index});
+    }
+}
+
+
+fn print_slice_isize(arr: []const isize)void {
     for (arr, 0..) |value, index| {
         std.debug.print("value -> {d}\tindex -> {d}\n", .{value, index});
     }
