@@ -43,6 +43,27 @@ pub fn main() void {
     var in = [_]isize{2,7,11,15};
     var result_1 = two_sum(in[0..in.len], 9);
     print_slice(result_1[0..result_1.len]); 
+
+    p("\ntwo sum two\n", .{});
+    var input_arr = [_]usize{2,7,11,15};
+    var output_arr = two_sum_two(input_arr[0..input_arr.len], 9);
+    print_slice(output_arr[0..output_arr.len]);
+}
+
+fn two_sum_two(nums: []usize, target: usize)[2]usize {
+    var left:usize = 0;
+    var right:usize = nums.len-1;
+    while(left < right){
+        const sum = nums[left] + nums[right];
+        if(sum < target){left+=1;}
+        else if (sum > target){right-=1;}
+        else {
+            left+=1;
+            right+=1;
+            break;
+        }
+    }
+    return [_]usize{left, right};
 }
 
 fn two_sum(nums: [] isize, target: isize ) [2]usize {
